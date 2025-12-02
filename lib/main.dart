@@ -60,11 +60,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       try {
         final renderBox = context.findRenderObject() as RenderBox;
-
         final positionOnScreen = renderBox.localToGlobal(Offset.zero).dy;
-
         final currentScrollOffset = _scrollController.offset;
-
         final targetOffset = currentScrollOffset + positionOnScreen - 60 - 10;
 
         final clampedOffset = targetOffset.clamp(
@@ -81,6 +78,81 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         debugPrint("Error scrolling: $e");
       }
     });
+  }
+
+  void _showMobileMenu() {
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: Colors.white,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return SafeArea(
+          child: Wrap(
+            children: [
+              ListTile(
+                leading: const Icon(
+                  Icons.info_outline,
+                  color: Colors.blueAccent,
+                ),
+                title: const Text(
+                  'About Us',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  _scrollToSection(_aboutKey);
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.school_outlined,
+                  color: Colors.orange,
+                ),
+                title: const Text(
+                  'Courses',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  _scrollToSection(_coursesKey);
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.category_outlined,
+                  color: Colors.purple,
+                ),
+                title: const Text(
+                  'Program',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  _scrollToSection(_programsKey);
+                },
+              ),
+              ListTile(
+                leading: const Icon(
+                  Icons.contact_mail_outlined,
+                  color: Colors.green,
+                ),
+                title: const Text(
+                  'Contact',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+                onTap: () {
+                  Navigator.pop(context);
+                  _scrollToSection(_contactKey);
+                },
+              ),
+              const SizedBox(height: 20),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   @override
@@ -107,7 +179,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ? [
                     IconButton(
                       icon: const Icon(Icons.menu, color: Colors.black87),
-                      onPressed: () {},
+                      onPressed: _showMobileMenu,
                     ),
                   ]
                 : [
@@ -154,7 +226,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   image: const AssetImage('assets/Student Codelia.png'),
                   fit: BoxFit.cover,
                   colorFilter: ColorFilter.mode(
-                    Colors.black.withOpacity(0.5),
+                    Colors.black.withValues(alpha: 0.5),
                     BlendMode.darken,
                   ),
                 ),

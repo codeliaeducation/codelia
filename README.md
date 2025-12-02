@@ -1,8 +1,7 @@
 Codelia - Future Tech Learning Center 🚀
 Landing page modern dan responsif untuk Codelia, sebuah Pusat Pembelajaran Teknologi untuk Generasi Masa Depan. Proyek ini dikembangkan menggunakan Flutter Web dengan fokus pada pengalaman pengguna (UX) yang interaktif dan kode yang modular.
 
-📸 Tampilan (Screenshots)
-
+📸 Tampilan (Terdapat pada folder assets dengan nama masing-masing "web-codelia-dekstop.jpg" dan "web-codelia-mobile.jpg)
 
 ✨ Fitur Utama
 - Fully Responsive: Layout beradaptasi otomatis antara tampilan Desktop (Row) dan Mobile (Column/Wrap).
@@ -15,9 +14,13 @@ Landing page modern dan responsif untuk Codelia, sebuah Pusat Pembelajaran Tekno
 Proyek ini telah di-refactor dari satu file monolitik menjadi struktur modular untuk skalabilitas:
 lib/
 ├── main.dart       # Entry point, Navbar, Hero Section, dan Logic Scroll utama
+
 ├── about_us.dart   # Bagian Visi & Misi dengan layout adaptif
+
 ├── courses.dart    # Daftar kursus dengan kartu interaktif
+
 ├── program.dart    # Pilihan program belajar
+
 └── contact.dart    # Informasi kontak dan tombol aksi (Call to Action)
 
 🛠️ Tech Stack
@@ -28,7 +31,7 @@ lib/
 
 🚀 Cara Menjalankan
 1. Clone repository ini:
-git clone [https://github.com/username-kamu/codelia-landing-page.git](https://github.com/username-kamu/codelia-landing-page.git)
+git clone
 
 2. Masuk ke direktori:
 cd codelia-landing-page

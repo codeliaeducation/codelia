@@ -43,6 +43,7 @@ class ContactSection extends StatelessWidget {
                 const SizedBox(height: 40),
                 if (isMobile)
                   Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       HoverScaleCard(
                         child: _contactCard(
@@ -213,12 +214,14 @@ class ContactSection extends StatelessWidget {
 class HoverScaleCard extends StatefulWidget {
   final Widget child;
   const HoverScaleCard({super.key, required this.child});
+
   @override
   State<HoverScaleCard> createState() => _HoverScaleCardState();
 }
 
 class _HoverScaleCardState extends State<HoverScaleCard> {
   bool _isHovered = false;
+
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -242,6 +245,7 @@ class FloatingMascot extends StatelessWidget {
     required this.controller,
     required this.content,
   });
+
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(

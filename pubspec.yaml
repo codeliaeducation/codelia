@@ -1,0 +1,23 @@
+name: codelia_landing
+description: website for Codelia education platform
+
+environment:
+  sdk: '>=3.10.1 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  url_launcher: ^6.1.7
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/Kod PNG 1.png
+    - assets/Kod PNG 2.png 
+    - assets/Kod PNG 3.png
+    - assets/Lia PNG 1.png
+    - assets/Lia PNG 3.png
+    - assets/logo.png
+    - assets/Student Codelia.png
+dev_dependencies:
+  flutter_lints: ^6.0.0

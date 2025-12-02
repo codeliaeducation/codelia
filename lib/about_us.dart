@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class AboutUsSection extends StatelessWidget {
   final AnimationController floatController;
+  final GlobalKey sectionKey;
 
-  const AboutUsSection({super.key, required this.floatController});
+  const AboutUsSection({
+    super.key,
+    required this.floatController,
+    required this.sectionKey,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +17,7 @@ class AboutUsSection extends StatelessWidget {
 
     return SliverToBoxAdapter(
       child: Container(
+        key: sectionKey,
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 16),
         color: const Color(0xFFF9FAFB),
@@ -184,7 +190,6 @@ class FloatingMascot extends StatelessWidget {
     required this.controller,
     required this.content,
   });
-
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(

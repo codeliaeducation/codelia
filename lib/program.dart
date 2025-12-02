@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class ProgramSection extends StatelessWidget {
   final AnimationController floatController;
+  final GlobalKey sectionKey;
 
-  const ProgramSection({super.key, required this.floatController});
+  const ProgramSection({
+    super.key,
+    required this.floatController,
+    required this.sectionKey,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +17,7 @@ class ProgramSection extends StatelessWidget {
 
     return SliverToBoxAdapter(
       child: Container(
+        key: sectionKey,
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 16),
         color: const Color(0xFFF9FAFB),
@@ -32,7 +38,7 @@ class ProgramSection extends StatelessWidget {
                         child: _programCardContent(
                           '🏠',
                           'Private Home Study',
-                          'Belajar secara individual dan intensif dirumah kamu (1 murid 1 guru)',
+                          'Belajar secara individual dan intensif 1 murid 1 guru',
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -40,7 +46,7 @@ class ProgramSection extends StatelessWidget {
                         child: _programCardContent(
                           '💻',
                           'Online Class',
-                          'Belajar secara online melalui daring dengan kelompok belajar (5-8 murid)',
+                          'Belajar secara online melalui daring dengan kelompok belajar 5-8 murid',
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -64,7 +70,7 @@ class ProgramSection extends StatelessWidget {
                             child: _programCardContent(
                               '🏠',
                               'Private Home Study',
-                              'Belajar secara individual dan intensif dirumah kamu (1 murid 1 guru)',
+                              'Belajar secara individual dan intensif 1 murid 1 guru',
                             ),
                           ),
                         ),
@@ -74,7 +80,7 @@ class ProgramSection extends StatelessWidget {
                             child: _programCardContent(
                               '💻',
                               'Online Class',
-                              'Belajar secara online melalui daring dengan kelompok belajar (5-8 murid)',
+                              'Belajar secara online melalui daring dengan kelompok belajar 5-8 murid',
                             ),
                           ),
                         ),
@@ -132,7 +138,6 @@ class ProgramSection extends StatelessWidget {
   }
 }
 
-// Shared Widget
 class HoverScaleCard extends StatefulWidget {
   final Widget child;
   const HoverScaleCard({super.key, required this.child});

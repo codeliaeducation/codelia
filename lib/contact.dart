@@ -3,8 +3,13 @@ import 'package:url_launcher/url_launcher.dart';
 
 class ContactSection extends StatelessWidget {
   final AnimationController floatController;
+  final GlobalKey sectionKey;
 
-  const ContactSection({super.key, required this.floatController});
+  const ContactSection({
+    super.key,
+    required this.floatController,
+    required this.sectionKey,
+  });
 
   Future<void> _launchUrl(String url) async {
     final uri = Uri.parse(url);
@@ -22,6 +27,7 @@ class ContactSection extends StatelessWidget {
 
     return SliverToBoxAdapter(
       child: Container(
+        key: sectionKey,
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 16),
         color: Colors.white,
@@ -207,14 +213,12 @@ class ContactSection extends StatelessWidget {
 class HoverScaleCard extends StatefulWidget {
   final Widget child;
   const HoverScaleCard({super.key, required this.child});
-
   @override
   State<HoverScaleCard> createState() => _HoverScaleCardState();
 }
 
 class _HoverScaleCardState extends State<HoverScaleCard> {
   bool _isHovered = false;
-
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
@@ -238,7 +242,6 @@ class FloatingMascot extends StatelessWidget {
     required this.controller,
     required this.content,
   });
-
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(

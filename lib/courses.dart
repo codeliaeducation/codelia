@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 
 class CoursesSection extends StatelessWidget {
   final AnimationController floatController;
+  final GlobalKey sectionKey;
 
-  const CoursesSection({super.key, required this.floatController});
+  const CoursesSection({
+    super.key,
+    required this.floatController,
+    required this.sectionKey,
+  });
 
   @override
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: Container(
+        key: sectionKey,
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 16),
         color: Colors.white,

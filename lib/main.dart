@@ -12,7 +12,7 @@ class CodeliaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Codelia Institute',
+      title: 'Codelia',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: true),
       home: const HomePage(),
@@ -57,20 +57,30 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     final context = key.currentContext;
     if (context == null) return;
 
-    final renderBox = context.findRenderObject() as RenderBox;
-    final positionOnScreen = renderBox.localToGlobal(Offset.zero).dy;
-    final currentScrollOffset = _scrollController.offset;
-    final targetOffset = currentScrollOffset + positionOnScreen - 60 - 10;
-    final clampedOffset = targetOffset.clamp(
-      0.0,
-      _scrollController.position.maxScrollExtent,
-    );
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      try {
+        final renderBox = context.findRenderObject() as RenderBox;
 
-    await _scrollController.animateTo(
-      clampedOffset,
-      duration: const Duration(milliseconds: 600),
-      curve: Curves.easeInOut,
-    );
+        final positionOnScreen = renderBox.localToGlobal(Offset.zero).dy;
+
+        final currentScrollOffset = _scrollController.offset;
+
+        final targetOffset = currentScrollOffset + positionOnScreen - 60 - 10;
+
+        final clampedOffset = targetOffset.clamp(
+          0.0,
+          _scrollController.position.maxScrollExtent,
+        );
+
+        await _scrollController.animateTo(
+          clampedOffset,
+          duration: const Duration(milliseconds: 600),
+          curve: Curves.easeInOut,
+        );
+      } catch (e) {
+        debugPrint("Error scrolling: $e");
+      }
+    });
   }
 
   @override
@@ -88,7 +98,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             elevation: 4,
             toolbarHeight: 60,
             title: Row(
-              children: [Image.asset('assets/logo.png', width: 70, height: 70)],
+              children: [
+                Image.asset('assets/logo.png', width: 70, height: 70),
+                const SizedBox(width: 8),
+              ],
             ),
             actions: isMobile
                 ? [
@@ -149,7 +162,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               child: Column(
                 children: [
                   const Text(
-                    'Selamat datang di Codelia',
+                    'Codelia',
                     style: TextStyle(
                       fontSize: 48,
                       fontWeight: FontWeight.bold,
@@ -185,10 +198,25 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             ),
           ),
 
-          AboutUsSection(key: _aboutKey, floatController: _floatController),
-          CoursesSection(key: _coursesKey, floatController: _floatController),
-          ProgramSection(key: _programsKey, floatController: _floatController),
-          ContactSection(key: _contactKey, floatController: _floatController),
+          AboutUsSection(
+            sectionKey: _aboutKey,
+            floatController: _floatController,
+          ),
+
+          CoursesSection(
+            sectionKey: _coursesKey,
+            floatController: _floatController,
+          ),
+
+          ProgramSection(
+            sectionKey: _programsKey,
+            floatController: _floatController,
+          ),
+
+          ContactSection(
+            sectionKey: _contactKey,
+            floatController: _floatController,
+          ),
 
           SliverToBoxAdapter(
             child: Container(
@@ -196,7 +224,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               color: const Color(0xFF1f2937),
               child: const Center(
                 child: Text(
-                  '© 2026 Codelia Foundation. All rights reserved.',
+                  '© 2026 Codelia. All rights reserved.',
                   style: TextStyle(color: Colors.white),
                 ),
               ),
